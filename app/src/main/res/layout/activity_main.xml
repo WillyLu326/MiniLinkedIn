@@ -99,4 +99,139 @@
             android:text="- Database\n- Angular 2\n- Android\n- Primeng"/>
     </LinearLayout>
 
+
+    <!-- Experience Component -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Experience"
+            android:textSize="23sp"
+            android:textAllCaps="true"/>
+
+        <ImageButton
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:layout_gravity="center_vertical"
+            android:background="@android:color/holo_purple"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="CPP(2012 ~ 2013)"/>
+            <ImageButton
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:background="@android:color/holo_blue_bright"/>
+        </LinearLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="- Database\n- Angular 2\n- Android\n- Primeng"/>
+    </LinearLayout>
+
+
+    <!-- Project Component -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Project"
+            android:textSize="23sp"
+            android:textAllCaps="true"/>
+
+        <ImageButton
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:layout_gravity="center_vertical"
+            android:background="@android:color/holo_purple"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="CPP(2012 ~ 2013)"/>
+            <ImageButton
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:background="@android:color/holo_blue_bright"/>
+        </LinearLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="- Database\n- Angular 2\n- Android\n- Primeng"/>
+    </LinearLayout>
+
+
+    <!-- Project Component -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Project"
+            android:textSize="23sp"
+            android:textAllCaps="true"/>
+
+        <ImageButton
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:layout_gravity="center_vertical"
+            android:background="@android:color/holo_purple"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="CPP(2012 ~ 2013)"/>
+            <ImageButton
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:background="@android:color/holo_blue_bright"/>
+        </LinearLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="- Database\n- Angular 2\n- Android\n- Primeng"/>
+    </LinearLayout>
+
 </LinearLayout>
