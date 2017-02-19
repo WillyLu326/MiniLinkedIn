@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">MiniLinkedInApp</string>
-    <string name="username">Willy Lu</string>
-    <string name="user_email">willylu@gmail.com</string>
+    <string name="username">Your Name</string>
+    <string name="user_email">email@email.com</string>
     <string name="education">Education</string>
     <string name="experience">Experience</string>
     <string name="project">Project</string>

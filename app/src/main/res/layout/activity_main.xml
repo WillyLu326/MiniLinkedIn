@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="@dimen/activity_vertical_margin">
+        android:padding="@dimen/activity_margin">
 
         <!-- User Profile Component -->
         <RelativeLayout
@@ -25,30 +25,30 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/username"
-                    android:textSize="23sp"/>
+                    android:textSize="@dimen/title_size"/>
                 <ImageButton
-                    android:layout_width="18dp"
-                    android:layout_height="18dp"
-                    android:layout_marginLeft="8dp"
+                    android:layout_width="@dimen/action_button_size"
+                    android:layout_height="@dimen/action_button_size"
+                    android:layout_marginLeft="@dimen/activity_sub_margin"
                     android:layout_gravity="center_vertical"
                     android:src="@drawable/ic_mode_edit_black_18dp"
                     android:background="?attr/selectableItemBackground"
-                    android:contentDescription="@string/image_button_description" />
+                    android:contentDescription="@string/image_button_description"/>
             </LinearLayout>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/profile_username"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="@dimen/activity_sub_margin"
                 android:layout_toLeftOf="@+id/profile_image"
                 android:layout_alignParentLeft="true"
                 android:text="@string/user_email"/>
-"
+
             <ImageView
                 android:id="@+id/profile_image"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
+                android:layout_width="@dimen/profile_image_size"
+                android:layout_height="@dimen/profile_image_size"
                 android:layout_alignParentRight="true"
                 android:src="@drawable/ic_account_circle_black_48dp"
                 android:background="?attr/selectableItemBackground"
@@ -61,19 +61,19 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp">
+            android:layout_marginTop="@dimen/activity_margin">
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/education"
-                android:textSize="23sp"
+                android:textSize="@dimen/title_size"
                 android:textAllCaps="true"/>
 
             <ImageButton
-                android:layout_width="18dp"
-                android:layout_height="18dp"
+                android:layout_width="@dimen/action_button_size"
+                android:layout_height="@dimen/action_button_size"
                 android:layout_gravity="center_vertical"
                 android:src="@drawable/ic_add_black_18dp"
                 android:background="?attr/selectableItemBackground"
@@ -82,7 +82,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="@dimen/activity_sub_margin"
             android:orientation="vertical">
             <LinearLayout
                 android:layout_width="match_parent"
@@ -93,8 +93,8 @@
                     android:layout_weight="1"
                     android:text="@string/introduction"/>
                 <ImageButton
-                    android:layout_width="18dp"
-                    android:layout_height="18dp"
+                    android:layout_width="@dimen/action_button_size"
+                    android:layout_height="@dimen/action_button_size"
                     android:src="@drawable/ic_mode_edit_black_18dp"
                     android:background="?attr/selectableItemBackground"
                     android:contentDescription="@string/image_button_description" />
@@ -111,27 +111,28 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp">
+            android:layout_marginTop="@dimen/activity_margin">
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/experience"
-                android:textSize="23sp"
+                android:textSize="@dimen/title_size"
                 android:textAllCaps="true"/>
 
             <ImageButton
-                android:layout_width="18dp"
-                android:layout_height="18dp"
+                android:layout_width="@dimen/action_button_size"
+                android:layout_height="@dimen/action_button_size"
                 android:layout_gravity="center_vertical"
                 android:src="@drawable/ic_add_black_18dp"
-                android:background="?attr/selectableItemBackground"/>
+                android:background="?attr/selectableItemBackground"
+                android:contentDescription="@string/image_button_description" />
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="@dimen/activity_sub_margin"
             android:orientation="vertical">
             <LinearLayout
                 android:layout_width="match_parent"
@@ -142,10 +143,11 @@
                     android:layout_weight="1"
                     android:text="@string/introduction"/>
                 <ImageButton
-                    android:layout_width="18dp"
-                    android:layout_height="18dp"
+                    android:layout_width="@dimen/action_button_size"
+                    android:layout_height="@dimen/action_button_size"
                     android:src="@drawable/ic_mode_edit_black_18dp"
-                    android:background="?attr/selectableItemBackground"/>
+                    android:background="?attr/selectableItemBackground"
+                    android:contentDescription="@string/image_button_description" />
             </LinearLayout>
             <TextView
                 android:layout_width="match_parent"
@@ -159,27 +161,28 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp">
+            android:layout_marginTop="@dimen/activity_margin">
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/project"
-                android:textSize="23sp"
+                android:textSize="@dimen/title_size"
                 android:textAllCaps="true"/>
 
             <ImageButton
-                android:layout_width="18dp"
-                android:layout_height="18dp"
+                android:layout_width="@dimen/action_button_size"
+                android:layout_height="@dimen/action_button_size"
                 android:layout_gravity="center_vertical"
                 android:src="@drawable/ic_add_black_18dp"
-                android:background="?attr/selectableItemBackground"/>
+                android:background="?attr/selectableItemBackground"
+                android:contentDescription="@string/image_button_description" />
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="@dimen/activity_sub_margin"
             android:orientation="vertical">
             <LinearLayout
                 android:layout_width="match_parent"
@@ -190,10 +193,11 @@
                     android:layout_weight="1"
                     android:text="@string/introduction"/>
                 <ImageButton
-                    android:layout_width="18dp"
-                    android:layout_height="18dp"
+                    android:layout_width="@dimen/action_button_size"
+                    android:layout_height="@dimen/action_button_size"
                     android:src="@drawable/ic_mode_edit_black_18dp"
-                    android:background="?attr/selectableItemBackground"/>
+                    android:background="?attr/selectableItemBackground"
+                    android:contentDescription="@string/image_button_description" />
             </LinearLayout>
             <TextView
                 android:layout_width="match_parent"
