@@ -14,4 +14,4 @@ Step by step to learn Android
 Willy Lu
 
 ## License
-@Copyright willylu
+@Copyright@willylu
