@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">MiniLinkedInApp</string>
+    <string name="username">Willy Lu</string>
+    <string name="user_email">willylu@gmail.com</string>
+    <string name="education">Education</string>
+    <string name="experience">Experience</string>
+    <string name="project">Project</string>
+
+    <string name="image_button_description">Image Button</string>
+
+    <string name="introduction">CPP(2012 ~ 2013)</string>
+    <string name="content">- Database\n- Angular 2\n- Android\n- Primeng</string>
 </resources>
