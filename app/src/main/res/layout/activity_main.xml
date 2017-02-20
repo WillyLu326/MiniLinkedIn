@@ -65,7 +65,8 @@
             android:id="@+id/education"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/activity_margin">
+            android:layout_marginTop="@dimen/activity_margin"
+            android:layout_marginBottom="@dimen/activity_sub_margin">
 
             <TextView
                 android:layout_width="0dp"
@@ -96,7 +97,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/activity_margin">
+            android:layout_marginTop="@dimen/activity_sub_margin">
 
             <TextView
                 android:layout_width="0dp"
@@ -146,7 +147,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/activity_margin">
+            android:layout_marginTop="@dimen/activity_sub_margin">
 
             <TextView
                 android:layout_width="0dp"

@@ -94,13 +94,13 @@ public class MainActivity extends AppCompatActivity {
         education1.courses.add("Android");
 
         Education education2 = new Education();
-        education2.schoolName = "CPP9999";
-        education2.startDate = DateUtils.stringToDate("09/2012");
-        education2.endDate = DateUtils.stringToDate("06/2013");
+        education2.schoolName = "Cal Poly";
+        education2.startDate = DateUtils.stringToDate("09/2014");
+        education2.endDate = DateUtils.stringToDate("06/2015");
         education2.courses = new ArrayList<>();
-        education2.courses.add("Angular 2");
-        education2.courses.add("Node JS");
-        education2.courses.add("Android");
+        education2.courses.add("MEAN Stack");
+        education2.courses.add("Primeng");
+        education2.courses.add("Ionic 2");
 
         educations.add(education1);
         educations.add(education2);
