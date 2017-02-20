@@ -46,7 +46,8 @@
                 android:layout_marginTop="@dimen/activity_sub_margin"
                 android:layout_toLeftOf="@+id/profile_image"
                 android:layout_alignParentLeft="true"
-                android:text="@string/user_email"/>
+                android:textSize="@dimen/content_size"
+                tools:text="@string/user_email"/>
 
             <ImageView
                 android:id="@+id/profile_image"

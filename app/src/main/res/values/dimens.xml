@@ -7,4 +7,5 @@
     <dimen name="action_button_size">18dp</dimen>
 
     <dimen name="title_size">23sp</dimen>
+    <dimen name="content_size">15sp</dimen>
 </resources>
