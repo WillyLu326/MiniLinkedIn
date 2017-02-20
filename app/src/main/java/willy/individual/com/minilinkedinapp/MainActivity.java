@@ -1,5 +1,6 @@
 package willy.individual.com.minilinkedinapp;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -46,6 +47,15 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setupEducations() {
+        // Education Add Button Listener
+        findViewById(R.id.education_add_btn).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, EducationEditActivity.class);
+                startActivity(intent);
+            }
+        });
+
         LinearLayout educationsView = (LinearLayout) findViewById(R.id.educations_layout);
         for (Education education : educations) {
             View view = getEducationView(education);
