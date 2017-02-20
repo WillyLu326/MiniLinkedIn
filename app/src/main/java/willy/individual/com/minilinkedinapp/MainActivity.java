@@ -84,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
         education1.courses.add("Android");
 
         Education education2 = new Education();
-        education2.schoolName = "CPP";
+        education2.schoolName = "CPP9999";
         education2.startDate = DateUtils.stringToDate("09/2012");
         education2.endDate = DateUtils.stringToDate("06/2013");
         education2.courses = new ArrayList<>();

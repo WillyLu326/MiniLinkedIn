@@ -10,4 +10,9 @@
 
     <string name="introduction">CPP(2012 ~ 2013)</string>
     <string name="content">- Database\n- Angular 2\n- Android\n- Primeng</string>
+    <string name="education_edit_school_name">School Name</string>
+    <string name="education_edit_major">Major</string>
+    <string name="education_edit_start_date">Start Date</string>
+    <string name="education_edit_end_date">End Date</string>
+    <string name="education_edit_courses">Courses</string>
 </resources>
