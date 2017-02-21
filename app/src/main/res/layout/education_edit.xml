@@ -44,7 +44,6 @@
         android:id="@+id/education_edit_courses"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="text"
         android:hint="@string/education_edit_courses"/>
 
 </LinearLayout>
