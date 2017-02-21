@@ -2,7 +2,6 @@ package willy.individual.com.minilinkedinapp;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.support.v4.text.TextUtilsCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;

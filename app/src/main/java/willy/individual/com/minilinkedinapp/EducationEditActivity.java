@@ -3,7 +3,6 @@ package willy.individual.com.minilinkedinapp;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
@@ -11,7 +10,6 @@ import android.view.MenuItem;
 import android.widget.EditText;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import willy.individual.com.minilinkedinapp.models.Education;
