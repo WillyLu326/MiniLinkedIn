@@ -20,11 +20,6 @@ public class MainActivity extends AppCompatActivity {
 
     private static final int REQ_CODE_EDUCATION = 100;
 
-    private TextView usernameTv;
-    private TextView emailTv;
-    private TextView educationTv;
-    private TextView courseTv;
-
     private BasicInfo basicInfo;
     private List<Education> educations;
 
@@ -69,11 +64,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setupBasicInfo() {
-        usernameTv  = (TextView) findViewById(R.id.profile_name);
-        emailTv     = (TextView) findViewById(R.id.profile_email);
-
-        usernameTv.setText(basicInfo.userName);
-        emailTv.setText(basicInfo.email);
+        ((TextView) findViewById(R.id.profile_name)).setText(basicInfo.userName);
+        ((TextView) findViewById(R.id.profile_email)).setText(basicInfo.email);
     }
 
     private void setupEducations() {
@@ -96,13 +88,12 @@ public class MainActivity extends AppCompatActivity {
 
     private View getEducationView(final Education education) {
         View view = getLayoutInflater().inflate(R.layout.education_item, null);
-        educationTv = (TextView) view.findViewById(R.id.education_info);
-        courseTv    = (TextView) view.findViewById(R.id.education_courses);
 
-        educationTv.setText(education.schoolName + " " + education.major + " ("
+        ((TextView) view.findViewById(R.id.education_info)).setText(education.schoolName + " " + education.major + " ("
                 + DateUtils.dateToString(education.startDate) + " ~ "
                 + DateUtils.dateToString(education.endDate) + ")");
-        courseTv.setText(getEducationCourses(education));
+
+        ((TextView) view.findViewById(R.id.education_courses)).setText(getEducationCourses(education));
 
         view.findViewById(R.id.education_edit_btn).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -116,7 +107,17 @@ public class MainActivity extends AppCompatActivity {
         return view;
     }
 
-
+    private String getEducationCourses(Education education) {
+        String result = "";
+        for (int i = 0; i < education.courses.size(); ++i) {
+            if (i == education.courses.size() - 1) {
+                result += "- " + education.courses.get(i);
+            } else {
+                result += "- " + education.courses.get(i) + "\n";
+            }
+        }
+        return result;
+    }
 
     private void fakeData() {
         basicInfo = new BasicInfo();
@@ -147,17 +148,5 @@ public class MainActivity extends AppCompatActivity {
 
         educations.add(education1);
         educations.add(education2);
-    }
-
-    private String getEducationCourses(Education education) {
-        String result = "";
-        for (int i = 0; i < education.courses.size(); ++i) {
-            if (i == education.courses.size() - 1) {
-                result += "- " + education.courses.get(i);
-            } else {
-                result += "- " + education.courses.get(i) + "\n";
-            }
-        }
-        return result;
     }
 }
