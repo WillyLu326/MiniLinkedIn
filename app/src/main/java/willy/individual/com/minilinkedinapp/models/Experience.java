@@ -5,6 +5,7 @@ import android.os.Parcelable;
 
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * Created by zhenglu on 2/20/17.
@@ -23,6 +24,10 @@ public class Experience implements Parcelable{
     public Date endDate;
 
     public List<String> projects;
+
+    public Experience() {
+        id = UUID.randomUUID().toString();
+    }
 
     protected Experience(Parcel in) {
         id = in.readString();

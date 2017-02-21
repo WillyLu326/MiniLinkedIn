@@ -9,11 +9,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import willy.individual.com.minilinkedinapp.models.Education;
 import willy.individual.com.minilinkedinapp.utils.DateUtils;
+import willy.individual.com.minilinkedinapp.utils.ToolUtils;
 
 /**
  * Created by zhenglu on 2/20/17.
@@ -39,7 +37,7 @@ public class EducationEditActivity extends AppCompatActivity {
             ((EditText)findViewById(R.id.education_edit_major)).setText(education.major);
             ((EditText)findViewById(R.id.education_edit_start_date)).setText(DateUtils.dateToString(education.startDate));
             ((EditText)findViewById(R.id.education_edit_end_date)).setText(DateUtils.dateToString(education.endDate));
-            ((EditText)findViewById(R.id.education_edit_courses)).setText(getCoursesString(education.courses));
+            ((EditText)findViewById(R.id.education_edit_courses)).setText(ToolUtils.convertListToString(education.courses));
         }
     }
 
@@ -71,7 +69,7 @@ public class EducationEditActivity extends AppCompatActivity {
         education.major = ((EditText)findViewById(R.id.education_edit_major)).getText().toString();
         education.startDate = DateUtils.stringToDate(((EditText)findViewById(R.id.education_edit_start_date)).getText().toString());
         education.endDate = DateUtils.stringToDate(((EditText)findViewById(R.id.education_edit_end_date)).getText().toString());
-        education.courses = getCoursesList(((EditText)findViewById(R.id.education_edit_courses)).getText().toString());
+        education.courses = ToolUtils.convertStringToList(((EditText)findViewById(R.id.education_edit_courses)).getText().toString());
 
         // Save Data
         Intent resultIntent = new Intent();
@@ -79,26 +77,5 @@ public class EducationEditActivity extends AppCompatActivity {
         setResult(Activity.RESULT_OK, resultIntent);
 
         finish();
-    }
-
-    private List<String> getCoursesList(String courses) {
-        String[] strs = courses.split("\\n");
-        List<String> result = new ArrayList<>();
-        for (String str : strs) {
-            result.add(str);
-        }
-        return result;
-     }
-
-    private String getCoursesString(List<String> courses) {
-        StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < courses.size(); ++i) {
-            if (i == courses.size() - 1) {
-                sb.append(courses.get(i));
-            } else {
-                sb.append(courses.get(i) + "\n");
-            }
-        }
-        return sb.toString();
     }
 }
