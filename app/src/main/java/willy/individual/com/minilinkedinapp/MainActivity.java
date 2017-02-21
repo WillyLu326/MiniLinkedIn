@@ -2,8 +2,10 @@ package willy.individual.com.minilinkedinapp;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.support.v4.text.TextUtilsCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -17,7 +19,7 @@ import willy.individual.com.minilinkedinapp.utils.DateUtils;
 
 public class MainActivity extends AppCompatActivity {
 
-    private static final int KEY_CODE_EDUCATION = 100;
+    private static final int REQ_CODE_EDUCATION = 100;
 
     private TextView usernameTv;
     private TextView emailTv;
@@ -40,13 +42,27 @@ public class MainActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (requestCode == KEY_CODE_EDUCATION && resultCode == Activity.RESULT_OK) {
+        if (requestCode == REQ_CODE_EDUCATION && resultCode == Activity.RESULT_OK) {
             Education education = data.getParcelableExtra(EducationEditActivity.KEY_EDUCATION);
-            educations.add(education);
+            updateEducations(education);
             setupEducations();
         }
     }
 
+    private void updateEducations(Education newEducation) {
+        boolean found = false;
+        for (int i = 0; i < educations.size(); ++i) {
+            if (TextUtils.equals(newEducation.id, educations.get(i).id)) {
+                educations.set(i, newEducation);
+                found = true;
+                break;
+            }
+        }
+
+        if (!found) {
+            educations.add(newEducation);
+        }
+    }
 
     private void setupUI() {
         setupBasicInfo();
@@ -67,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, EducationEditActivity.class);
-                startActivityForResult(intent, KEY_CODE_EDUCATION);
+                startActivityForResult(intent, REQ_CODE_EDUCATION);
             }
         });
 
@@ -79,7 +95,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private View getEducationView(Education education) {
+    private View getEducationView(final Education education) {
         View view = getLayoutInflater().inflate(R.layout.education_item, null);
         educationTv = (TextView) view.findViewById(R.id.education_info);
         courseTv    = (TextView) view.findViewById(R.id.education_courses);
@@ -88,6 +104,15 @@ public class MainActivity extends AppCompatActivity {
                 + DateUtils.dateToString(education.startDate) + " ~ "
                 + DateUtils.dateToString(education.endDate) + ")");
         courseTv.setText(getEducationCourses(education));
+
+        view.findViewById(R.id.education_edit_btn).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, EducationEditActivity.class);
+                intent.putExtra(EducationEditActivity.KEY_EDUCATION, education);
+                startActivityForResult(intent, REQ_CODE_EDUCATION);
+            }
+        });
 
         return view;
     }

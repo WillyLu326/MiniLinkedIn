@@ -15,6 +15,7 @@
             android:textSize="@dimen/content_size"
             tools:text="@string/introduction" />
         <ImageButton
+            android:id="@+id/education_edit_btn"
             android:layout_width="@dimen/action_button_size"
             android:layout_height="@dimen/action_button_size"
             android:src="@drawable/ic_mode_edit_black_18dp"
