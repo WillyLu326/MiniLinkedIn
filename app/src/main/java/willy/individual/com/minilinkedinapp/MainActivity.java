@@ -16,6 +16,7 @@ import java.util.List;
 
 import willy.individual.com.minilinkedinapp.models.BasicInfo;
 import willy.individual.com.minilinkedinapp.models.Education;
+import willy.individual.com.minilinkedinapp.models.Experience;
 import willy.individual.com.minilinkedinapp.utils.DateUtils;
 import willy.individual.com.minilinkedinapp.utils.ModelUtils;
 
@@ -27,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
 
     private BasicInfo basicInfo;
     private List<Education> educations;
+    private List<Experience> experiences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,6 +70,7 @@ public class MainActivity extends AppCompatActivity {
     private void setupUI() {
         setupBasicInfo();
         setupEducations();
+        setupExperiences();
     }
 
     private void setupBasicInfo() {
@@ -93,6 +96,14 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    private void setupExperiences() {
+        LinearLayout experiencesView = (LinearLayout) findViewById(R.id.experiences_layout);
+        for (Experience experience : experiences) {
+            View view = getExperienceView(experience);
+            experiencesView.addView(view);
+        }
+    }
+
     private View getEducationView(final Education education) {
         View view = getLayoutInflater().inflate(R.layout.education_item, null);
 
@@ -114,6 +125,34 @@ public class MainActivity extends AppCompatActivity {
         return view;
     }
 
+    private View getExperienceView(Experience experience) {
+        View view = getLayoutInflater().inflate(R.layout.experience_item, null);
+        ((TextView) view.findViewById(R.id.experience_item_info)).setText(experience.companyName + " " + experience.jobTitle + " ("
+                + DateUtils.dateToString(experience.startDate) + " ~ "
+                + DateUtils.dateToString(experience.endDate) + ")");
+
+        ((TextView) view.findViewById(R.id.experience_item_summary)).setText(getExperienceSummary(experience));
+
+        return view;
+    }
+
+    private void loadData() {
+        basicInfo = new BasicInfo();
+        basicInfo.userName = "Willy Lu";
+        basicInfo.email = "willylu@email.com";
+
+        List<Education> savedEducations = ModelUtils.readModel(this, SP_KEY_EDUCATION, new TypeToken<List<Education>>(){});
+        educations = savedEducations == null ? new ArrayList<Education>() : savedEducations;
+
+        List<Experience> savedExperiences = ModelUtils.readModel(this, SP_KEY_EDUCATION, new TypeToken<List<Experience>>(){});
+        experiences = savedExperiences == null ? new ArrayList<Experience>() : savedExperiences;
+    }
+
+    /**
+     * Tools Functions
+     * @param education
+     * @return
+     */
     private String getEducationCourses(Education education) {
         String result = "";
         for (int i = 0; i < education.courses.size(); ++i) {
@@ -126,13 +165,16 @@ public class MainActivity extends AppCompatActivity {
         return result;
     }
 
-    private void loadData() {
-        basicInfo = new BasicInfo();
-        basicInfo.userName = "Willy Lu";
-        basicInfo.email = "willylu@email.com";
-
-        List<Education> savedEducation = ModelUtils.readModel(this, SP_KEY_EDUCATION, new TypeToken<List<Education>>(){});
-        educations = savedEducation == null ? new ArrayList<Education>() : savedEducation;
+    private String getExperienceSummary(Experience experience) {
+        String result = "";
+        for (int i = 0; i < experience.projects.size(); ++i) {
+            if (i == experience.projects.size() - 1) {
+                result += "- " + experience.projects.get(i);
+            } else {
+                result += "- " + experience.projects.get(i) + "\n";
+            }
+        }
+        return result;
     }
 
 }
