@@ -97,6 +97,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setupExperiences() {
+        findViewById(R.id.experience_add_btn).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //Intent intent = new Intent(MainActivity.this, )
+            }
+        });
         LinearLayout experiencesView = (LinearLayout) findViewById(R.id.experiences_layout);
         for (Experience experience : experiences) {
             View view = getExperienceView(experience);

@@ -109,6 +109,7 @@
                 android:textAllCaps="true"/>
 
             <ImageButton
+                android:id="@+id/experience_add_btn"
                 android:layout_width="@dimen/action_button_size"
                 android:layout_height="@dimen/action_button_size"
                 android:layout_gravity="center_vertical"
