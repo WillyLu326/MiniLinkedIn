@@ -9,16 +9,21 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.google.gson.reflect.TypeToken;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import willy.individual.com.minilinkedinapp.models.BasicInfo;
 import willy.individual.com.minilinkedinapp.models.Education;
 import willy.individual.com.minilinkedinapp.utils.DateUtils;
+import willy.individual.com.minilinkedinapp.utils.ModelUtils;
 
 public class MainActivity extends AppCompatActivity {
 
     private static final int REQ_CODE_EDUCATION = 100;
+
+    private static final String SP_KEY_EDUCATION = "sp_education";
 
     private BasicInfo basicInfo;
     private List<Education> educations;
@@ -28,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        fakeData();
+        loadData();
         setupUI();
     }
 
@@ -56,6 +61,8 @@ public class MainActivity extends AppCompatActivity {
         if (!found) {
             educations.add(newEducation);
         }
+
+        ModelUtils.saveModel(this, SP_KEY_EDUCATION, educations);
     }
 
     private void setupUI() {
@@ -119,34 +126,13 @@ public class MainActivity extends AppCompatActivity {
         return result;
     }
 
-    private void fakeData() {
+    private void loadData() {
         basicInfo = new BasicInfo();
         basicInfo.userName = "Willy Lu";
         basicInfo.email = "willylu@email.com";
 
-        educations = new ArrayList<>();
-
-        Education education1 = new Education();
-        education1.schoolName = "CPP";
-        education1.major = "CS";
-        education1.startDate = DateUtils.stringToDate("09/2012");
-        education1.endDate = DateUtils.stringToDate("06/2013");
-        education1.courses = new ArrayList<>();
-        education1.courses.add("Angular 2");
-        education1.courses.add("Node JS");
-        education1.courses.add("Android");
-
-        Education education2 = new Education();
-        education2.schoolName = "Cal Poly";
-        education2.major = "CS";
-        education2.startDate = DateUtils.stringToDate("09/2014");
-        education2.endDate = DateUtils.stringToDate("06/2015");
-        education2.courses = new ArrayList<>();
-        education2.courses.add("MEAN Stack");
-        education2.courses.add("Primeng");
-        education2.courses.add("Ionic 2");
-
-        educations.add(education1);
-        educations.add(education2);
+        List<Education> savedEducation = ModelUtils.readModel(this, SP_KEY_EDUCATION, new TypeToken<List<Education>>(){});
+        educations = savedEducation == null ? new ArrayList<Education>() : savedEducation;
     }
+
 }
