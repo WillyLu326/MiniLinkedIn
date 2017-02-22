@@ -17,63 +17,43 @@ import willy.individual.com.minilinkedinapp.utils.ToolUtils;
  * Created by zhenglu on 2/20/17.
  */
 
-public class EducationEditActivity extends AppCompatActivity {
+public class EducationEditActivity extends BasicEditActivity<Education> {
 
     public static final String KEY_EDUCATION = "education";
 
-    private Education education;
-
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.education_edit);
-
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-        education = getIntent().getParcelableExtra(KEY_EDUCATION);
-
-        if (education != null) {
-            ((EditText)findViewById(R.id.education_edit_school_name)).setText(education.schoolName);
-            ((EditText)findViewById(R.id.education_edit_major)).setText(education.major);
-            ((EditText)findViewById(R.id.education_edit_start_date)).setText(DateUtils.dateToString(education.startDate));
-            ((EditText)findViewById(R.id.education_edit_end_date)).setText(DateUtils.dateToString(education.endDate));
-            ((EditText)findViewById(R.id.education_edit_courses)).setText(ToolUtils.convertListToString(education.courses));
-        }
+    protected int getLayoutId() {
+        return R.layout.education_edit;
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_edit, menu);
-        return super.onCreateOptionsMenu(menu);
+    protected Education getIntentData() {
+        return getIntent().getParcelableExtra(KEY_EDUCATION);
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                finish();
-                return true;
-            case R.id.ic_save:
-                saveAndExit();
-                return true;
-        }
-        return super.onOptionsItemSelected(item);
+    protected void setupEditUI() {
+        ((EditText)findViewById(R.id.education_edit_school_name)).setText(data.schoolName);
+        ((EditText)findViewById(R.id.education_edit_major)).setText(data.major);
+        ((EditText)findViewById(R.id.education_edit_start_date)).setText(DateUtils.dateToString(data.startDate));
+        ((EditText)findViewById(R.id.education_edit_end_date)).setText(DateUtils.dateToString(data.endDate));
+        ((EditText)findViewById(R.id.education_edit_courses)).setText(ToolUtils.convertListToString(data.courses));
     }
 
-    private void saveAndExit() {
-        if (education == null) {
-            education = new Education();
+    protected void saveAndExit() {
+        if (data == null) {
+            data = new Education();
         }
 
-        education.schoolName = ((EditText)findViewById(R.id.education_edit_school_name)).getText().toString();
-        education.major = ((EditText)findViewById(R.id.education_edit_major)).getText().toString();
-        education.startDate = DateUtils.stringToDate(((EditText)findViewById(R.id.education_edit_start_date)).getText().toString());
-        education.endDate = DateUtils.stringToDate(((EditText)findViewById(R.id.education_edit_end_date)).getText().toString());
-        education.courses = ToolUtils.convertStringToList(((EditText)findViewById(R.id.education_edit_courses)).getText().toString());
+        data.schoolName = ((EditText)findViewById(R.id.education_edit_school_name)).getText().toString();
+        data.major = ((EditText)findViewById(R.id.education_edit_major)).getText().toString();
+        data.startDate = DateUtils.stringToDate(((EditText)findViewById(R.id.education_edit_start_date)).getText().toString());
+        data.endDate = DateUtils.stringToDate(((EditText)findViewById(R.id.education_edit_end_date)).getText().toString());
+        data.courses = ToolUtils.convertStringToList(((EditText)findViewById(R.id.education_edit_courses)).getText().toString());
 
         // Save Data
         Intent resultIntent = new Intent();
-        resultIntent.putExtra(KEY_EDUCATION, education);
+        resultIntent.putExtra(KEY_EDUCATION, data);
         setResult(Activity.RESULT_OK, resultIntent);
 
         finish();
