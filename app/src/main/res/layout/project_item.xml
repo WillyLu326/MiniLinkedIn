@@ -13,6 +13,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:textSize="@dimen/content_size"
             tools:text="ProjectName Title (09/2012 ~ 09/2013)"/>
         <ImageButton
             android:id="@+id/project_item_edit_btn"
@@ -25,5 +26,6 @@
         android:id="@+id/project_item_content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textSize="@dimen/content_size"
         tools:text="HealthCheck \n Web UI \n HTML \n CSS"/>
 </LinearLayout>

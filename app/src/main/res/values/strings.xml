@@ -21,4 +21,9 @@
     <string name="experience_edit_start_date">Start Date</string>
     <string name="experience_edit_end_date">End Date</string>
     <string name="experience_edit_project_summary">Project Summary</string>
+    <string name="project_edit_project_name">Project Name</string>
+    <string name="project_edit_project_title">Project Title</string>
+    <string name="project_edit_start_date">Start Date</string>
+    <string name="project_edit_end_start">End Date</string>
+    <string name="project_edit_project_summary">Project Summary</string>
 </resources>
