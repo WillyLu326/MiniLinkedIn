@@ -26,4 +26,5 @@
     <string name="project_edit_start_date">Start Date</string>
     <string name="project_edit_end_start">End Date</string>
     <string name="project_edit_project_summary">Project Summary</string>
+    <string name="project_edit_end_date">End Date</string>
 </resources>

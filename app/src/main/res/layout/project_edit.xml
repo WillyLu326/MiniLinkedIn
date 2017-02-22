@@ -31,11 +31,11 @@
             android:inputType="date"
             android:hint="@string/project_edit_start_date"/>
         <EditText
-            android:id="@+id/project_edit_end_start"
+            android:id="@+id/project_edit_end_date"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:hint="@string/project_edit_end_start"/>
+            android:hint="@string/project_edit_end_date"/>
     </LinearLayout>
 
     <EditText
