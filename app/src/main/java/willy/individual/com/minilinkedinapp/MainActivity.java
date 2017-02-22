@@ -17,6 +17,7 @@ import java.util.List;
 import willy.individual.com.minilinkedinapp.models.BasicInfo;
 import willy.individual.com.minilinkedinapp.models.Education;
 import willy.individual.com.minilinkedinapp.models.Experience;
+import willy.individual.com.minilinkedinapp.models.Project;
 import willy.individual.com.minilinkedinapp.utils.DateUtils;
 import willy.individual.com.minilinkedinapp.utils.ModelUtils;
 
@@ -24,13 +25,16 @@ public class MainActivity extends AppCompatActivity {
 
     private static final int REQ_CODE_EDUCATION  = 100;
     private static final int REQ_CODE_EXPERIENCE = 101;
+    private static final int REQ_CODE_PROJECT = 102;
 
     private static final String SP_KEY_EDUCATION = "sp_education";
     private static final String SP_KEY_EXPERIENCE = "sp_experience";
+    private static final String SP_KEY_PROJECT = "sp_project";
 
     private BasicInfo basicInfo;
     private List<Education> educations;
     private List<Experience> experiences;
+    private List<Project> projects;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +59,12 @@ public class MainActivity extends AppCompatActivity {
             Experience experience = data.getParcelableExtra(ExperienceEditActivity.KEY_EXPERIENCE);
             updateExperiences(experience);
             setupExperiences();
+        }
+
+        if (requestCode == REQ_CODE_PROJECT && resultCode == Activity.RESULT_OK) {
+            Project project = data.getParcelableExtra(ProjectEditActivity.KEY_PROJECT);
+            updateProjects(project);
+            setupProjects();
         }
     }
 
@@ -92,10 +102,28 @@ public class MainActivity extends AppCompatActivity {
         ModelUtils.saveModel(this, SP_KEY_EXPERIENCE, experiences);
     }
 
+    private void updateProjects(Project newProject) {
+        boolean found = false;
+        for (int i = 0; i < projects.size(); ++i) {
+            if (TextUtils.equals(newProject.id, projects.get(i).id)) {
+                projects.set(i, newProject);
+                found = true;
+                break;
+            }
+        }
+
+        if (!found) {
+            projects.add(newProject);
+        }
+
+        ModelUtils.saveModel(this, SP_KEY_PROJECT, projects);
+    }
+
     private void setupUI() {
         setupBasicInfo();
         setupEducations();
         setupExperiences();
+        setupProjects();
     }
 
     private void setupBasicInfo() {
@@ -134,6 +162,22 @@ public class MainActivity extends AppCompatActivity {
         for (Experience experience : experiences) {
             View view = getExperienceView(experience);
             experiencesView.addView(view);
+        }
+    }
+
+    private void setupProjects() {
+        findViewById(R.id.project_add_btn).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, ProjectEditActivity.class);
+                startActivityForResult(intent, REQ_CODE_PROJECT);
+            }
+        });
+        LinearLayout projectsView = (LinearLayout) findViewById(R.id.projects_layout);
+        projectsView.removeAllViews();
+        for (Project project : projects) {
+            View view  = getProjectView(project);
+            projectsView.addView(view);
         }
     }
 
@@ -179,6 +223,25 @@ public class MainActivity extends AppCompatActivity {
         return view;
     }
 
+    private View getProjectView(final Project project) {
+        View view = getLayoutInflater().inflate(R.layout.project_item, null);
+        ((TextView) view.findViewById(R.id.project_item_info)).setText(project.projectName + " " + project.summary + " ("
+                + DateUtils.dateToString(project.startDate) + " ~ "
+                + DateUtils.dateToString(project.endDate) + ")");
+        ((TextView) view.findViewById(R.id.project_item_content)).setText(getProjectTools(project));
+
+        view.findViewById(R.id.project_item_edit_btn).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, ProjectEditActivity.class);
+                intent.putExtra(ProjectEditActivity.KEY_PROJECT, project);
+                startActivityForResult(intent, REQ_CODE_PROJECT);
+            }
+        });
+
+        return view;
+    }
+
     private void loadData() {
         basicInfo = new BasicInfo();
         basicInfo.userName = "Willy Lu";
@@ -189,6 +252,9 @@ public class MainActivity extends AppCompatActivity {
 
         List<Experience> savedExperiences = ModelUtils.readModel(this, SP_KEY_EXPERIENCE, new TypeToken<List<Experience>>(){});
         experiences = savedExperiences == null ? new ArrayList<Experience>() : savedExperiences;
+
+        List<Project> savedProjects = ModelUtils.readModel(this, SP_KEY_PROJECT, new TypeToken<List<Project>>(){});
+        projects = savedProjects == null ? new ArrayList<Project>() : savedProjects;
     }
 
     /**
@@ -215,6 +281,18 @@ public class MainActivity extends AppCompatActivity {
                 result += "- " + experience.projects.get(i);
             } else {
                 result += "- " + experience.projects.get(i) + "\n";
+            }
+        }
+        return result;
+    }
+
+    private String getProjectTools(Project project) {
+        String result = "";
+        for (int i = 0; i < project.tools.size(); ++i) {
+            if (i == project.tools.size() - 1) {
+                result += "- " + project.tools.get(i);
+            } else {
+                result += "- " + project.tools.get(i) + "\n";
             }
         }
         return result;

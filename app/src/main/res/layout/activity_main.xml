@@ -141,6 +141,7 @@
                 android:textAllCaps="true"/>
 
             <ImageButton
+                android:id="@+id/project_add_btn"
                 android:layout_width="@dimen/action_button_size"
                 android:layout_height="@dimen/action_button_size"
                 android:layout_gravity="center_vertical"
@@ -149,6 +150,7 @@
                 android:contentDescription="@string/image_button_description" />
         </LinearLayout>
         <LinearLayout
+            android:id="@+id/projects_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/activity_sub_margin"
