@@ -26,5 +26,4 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:text="HealthCheck \n Web UI \n HTML \n CSS"/>
-
 </LinearLayout>
