@@ -3,15 +3,18 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:padding="@dimen/activity_margin">
 
     <EditText
+        android:id="@+id/experience_edit_company_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="text"
         android:hint="@string/experience_edit_company_name"/>
 
     <EditText
+        android:id="@+id/experience_edit_job_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="text"
@@ -21,12 +24,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <EditText
+            android:id="@+id/experience_edit_start_date"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:inputType="date"
             android:hint="@string/experience_edit_start_date"/>
         <EditText
+            android:id="@+id/experience_edit_end_date"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -35,6 +40,7 @@
     </LinearLayout>
 
     <EditText
+        android:id="@+id/experience_edit_project_summary"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/experience_edit_project_summary"/>

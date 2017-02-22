@@ -22,9 +22,11 @@ import willy.individual.com.minilinkedinapp.utils.ModelUtils;
 
 public class MainActivity extends AppCompatActivity {
 
-    private static final int REQ_CODE_EDUCATION = 100;
+    private static final int REQ_CODE_EDUCATION  = 100;
+    private static final int REQ_CODE_EXPERIENCE = 101;
 
     private static final String SP_KEY_EDUCATION = "sp_education";
+    private static final String SP_KEY_EXPERIENCE = "sp_experience";
 
     private BasicInfo basicInfo;
     private List<Education> educations;
@@ -48,6 +50,12 @@ public class MainActivity extends AppCompatActivity {
             updateEducations(education);
             setupEducations();
         }
+
+        if (requestCode == REQ_CODE_EXPERIENCE && resultCode == Activity.RESULT_OK) {
+            Experience experience = data.getParcelableExtra(ExperienceEditActivity.KEY_EXPERIENCE);
+            updateExperiences(experience);
+            setupExperiences();
+        }
     }
 
     private void updateEducations(Education newEducation) {
@@ -65,6 +73,23 @@ public class MainActivity extends AppCompatActivity {
         }
 
         ModelUtils.saveModel(this, SP_KEY_EDUCATION, educations);
+    }
+
+    private void updateExperiences(Experience newExperience) {
+        boolean found = false;
+        for (int i = 0; i < experiences.size(); ++i) {
+            if (TextUtils.equals(experiences.get(i).id, newExperience.id)) {
+                experiences.set(i, newExperience);
+                found = true;
+                break;
+            }
+        }
+
+        if (!found) {
+            experiences.add(newExperience);
+        }
+
+        ModelUtils.saveModel(this, SP_KEY_EXPERIENCE, experiences);
     }
 
     private void setupUI() {
@@ -100,10 +125,12 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.experience_add_btn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //Intent intent = new Intent(MainActivity.this, )
+                Intent intent = new Intent(MainActivity.this, ExperienceEditActivity.class);
+                startActivityForResult(intent, REQ_CODE_EXPERIENCE);
             }
         });
         LinearLayout experiencesView = (LinearLayout) findViewById(R.id.experiences_layout);
+        experiencesView.removeAllViews();
         for (Experience experience : experiences) {
             View view = getExperienceView(experience);
             experiencesView.addView(view);
@@ -131,13 +158,23 @@ public class MainActivity extends AppCompatActivity {
         return view;
     }
 
-    private View getExperienceView(Experience experience) {
+    private View getExperienceView(final Experience experience) {
         View view = getLayoutInflater().inflate(R.layout.experience_item, null);
+
         ((TextView) view.findViewById(R.id.experience_item_info)).setText(experience.companyName + " " + experience.jobTitle + " ("
                 + DateUtils.dateToString(experience.startDate) + " ~ "
                 + DateUtils.dateToString(experience.endDate) + ")");
 
         ((TextView) view.findViewById(R.id.experience_item_summary)).setText(getExperienceSummary(experience));
+
+        view.findViewById(R.id.experience_item_edit_btn).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, ExperienceEditActivity.class);
+                intent.putExtra(ExperienceEditActivity.KEY_EXPERIENCE, experience);
+                startActivityForResult(intent, REQ_CODE_EXPERIENCE);
+            }
+        });
 
         return view;
     }
@@ -150,7 +187,7 @@ public class MainActivity extends AppCompatActivity {
         List<Education> savedEducations = ModelUtils.readModel(this, SP_KEY_EDUCATION, new TypeToken<List<Education>>(){});
         educations = savedEducations == null ? new ArrayList<Education>() : savedEducations;
 
-        List<Experience> savedExperiences = ModelUtils.readModel(this, SP_KEY_EDUCATION, new TypeToken<List<Experience>>(){});
+        List<Experience> savedExperiences = ModelUtils.readModel(this, SP_KEY_EXPERIENCE, new TypeToken<List<Experience>>(){});
         experiences = savedExperiences == null ? new ArrayList<Experience>() : savedExperiences;
     }
 
