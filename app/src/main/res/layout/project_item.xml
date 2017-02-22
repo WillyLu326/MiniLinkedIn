@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/project_item_info"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            tools:text="ProjectName Title (09/2012 ~ 09/2013)"/>
+        <ImageButton
+            android:id="@+id/project_item_edit_btn"
+            android:layout_width="@dimen/action_button_size"
+            android:layout_height="@dimen/action_button_size"
+            android:src="@drawable/ic_mode_edit_black_18dp"/>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/project_item_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:text="HealthCheck \n Web UI \n HTML \n CSS"/>
+
+</LinearLayout>
