@@ -52,23 +52,31 @@ public class MainActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
+        if (requestCode == REQ_CODE_BASICINFO && resultCode == Activity.RESULT_OK) {
+            basicInfo = data.getParcelableExtra(BasicInfoActivity.KEY_BASICINFO);
+            updateBasicinfo(basicInfo);
+        }
+
         if (requestCode == REQ_CODE_EDUCATION && resultCode == Activity.RESULT_OK) {
             Education education = data.getParcelableExtra(EducationEditActivity.KEY_EDUCATION);
             updateEducations(education);
-            setupEducations();
         }
 
         if (requestCode == REQ_CODE_EXPERIENCE && resultCode == Activity.RESULT_OK) {
             Experience experience = data.getParcelableExtra(ExperienceEditActivity.KEY_EXPERIENCE);
             updateExperiences(experience);
-            setupExperiences();
         }
 
         if (requestCode == REQ_CODE_PROJECT && resultCode == Activity.RESULT_OK) {
             Project project = data.getParcelableExtra(ProjectEditActivity.KEY_PROJECT);
             updateProjects(project);
-            setupProjects();
         }
+    }
+
+    private void updateBasicinfo(BasicInfo basicInfo) {
+        ModelUtils.saveModel(this, SP_KEY_BASICINFO, basicInfo);
+
+        setupBasicInfo();
     }
 
     private void updateEducations(Education newEducation) {
@@ -86,6 +94,8 @@ public class MainActivity extends AppCompatActivity {
         }
 
         ModelUtils.saveModel(this, SP_KEY_EDUCATION, educations);
+
+        setupEducations();
     }
 
     private void updateExperiences(Experience newExperience) {
@@ -103,6 +113,8 @@ public class MainActivity extends AppCompatActivity {
         }
 
         ModelUtils.saveModel(this, SP_KEY_EXPERIENCE, experiences);
+
+        setupExperiences();
     }
 
     private void updateProjects(Project newProject) {
@@ -120,6 +132,8 @@ public class MainActivity extends AppCompatActivity {
         }
 
         ModelUtils.saveModel(this, SP_KEY_PROJECT, projects);
+
+        setupProjects();
     }
 
     private void setupUI() {
