@@ -2,6 +2,7 @@ package willy.individual.com.minilinkedinapp;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.view.View;
 import android.widget.EditText;
 
 import willy.individual.com.minilinkedinapp.models.Project;
@@ -15,6 +16,7 @@ import willy.individual.com.minilinkedinapp.utils.ToolUtils;
 public class ProjectEditActivity extends BasicEditActivity<Project> {
 
     public static final String KEY_PROJECT = "project";
+    public static final String KEY_PROJECT_DELETE = "project_delete";
 
     @Override
     protected int getLayoutId() {
@@ -33,11 +35,22 @@ public class ProjectEditActivity extends BasicEditActivity<Project> {
         ((EditText) findViewById(R.id.project_edit_start_date)).setText(DateUtils.dateToString(data.startDate));
         ((EditText) findViewById(R.id.project_edit_end_date)).setText(DateUtils.dateToString(data.endDate));
         ((EditText) findViewById(R.id.project_edit_project_summary)).setText(ToolUtils.convertListToString(data.tools));
+
+        findViewById(R.id.project_edit_delete_btn).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent resultIntent = new Intent();
+                resultIntent.putExtra(KEY_PROJECT_DELETE, data.id);
+                setResult(Activity.RESULT_OK, resultIntent);
+
+                finish();
+            }
+        });
     }
 
     @Override
     protected void setupDefaultUI() {
-
+        findViewById(R.id.project_edit_delete_btn).setVisibility(View.INVISIBLE);
     }
 
     @Override

@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -79,8 +78,13 @@ public class MainActivity extends AppCompatActivity {
         }
 
         if (requestCode == REQ_CODE_PROJECT && resultCode == Activity.RESULT_OK) {
-            Project project = data.getParcelableExtra(ProjectEditActivity.KEY_PROJECT);
-            updateProjects(project);
+            String id = data.getStringExtra(ProjectEditActivity.KEY_PROJECT_DELETE);
+            if (id != null) {
+                deleteAndUpdateProjects(id);
+            } else {
+                Project project = data.getParcelableExtra(ProjectEditActivity.KEY_PROJECT);
+                updateProjects(project);
+            }
         }
     }
 
@@ -168,6 +172,19 @@ public class MainActivity extends AppCompatActivity {
 
         if (!found) {
             projects.add(newProject);
+        }
+
+        ModelUtils.saveModel(this, SP_KEY_PROJECT, projects);
+
+        setupProjects();
+    }
+
+    private void deleteAndUpdateProjects(String id) {
+        for (int i = 0; i < projects.size(); ++i) {
+            if (TextUtils.equals(projects.get(i).id, id)) {
+                projects.remove(i);
+                break;
+            }
         }
 
         ModelUtils.saveModel(this, SP_KEY_PROJECT, projects);
