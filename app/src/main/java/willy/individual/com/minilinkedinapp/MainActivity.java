@@ -21,16 +21,18 @@ import willy.individual.com.minilinkedinapp.models.Project;
 import willy.individual.com.minilinkedinapp.utils.DateUtils;
 import willy.individual.com.minilinkedinapp.utils.ModelUtils;
 
+@SuppressWarnings("ALL")
 public class MainActivity extends AppCompatActivity {
 
     private static final int REQ_CODE_EDUCATION  = 100;
     private static final int REQ_CODE_EXPERIENCE = 101;
-    private static final int REQ_CODE_PROJECT = 102;
+    private static final int REQ_CODE_PROJECT    = 102;
+    private static final int REQ_CODE_BASICINFO  = 103;
 
-    private static final String SP_KEY_EDUCATION = "sp_education";
-    private static final String SP_KEY_EXPERIENCE = "sp_experience";
-    private static final String SP_KEY_PROJECT = "sp_project";
-    private static final String SP_KEY_BASICINFO = "sp_basicinfo";
+    private static final String SP_KEY_EDUCATION   = "sp_education";
+    private static final String SP_KEY_EXPERIENCE  = "sp_experience";
+    private static final String SP_KEY_PROJECT     = "sp_project";
+    private static final String SP_KEY_BASICINFO   = "sp_basicinfo";
 
     private BasicInfo basicInfo;
     private List<Education> educations;
@@ -131,7 +133,8 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.profile_edit_btn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent();
+                Intent intent = new Intent(MainActivity.this, BasicInfoActivity.class);
+                startActivityForResult(intent, REQ_CODE_BASICINFO);
             }
         });
 
