@@ -36,6 +36,11 @@ public class ProjectEditActivity extends BasicEditActivity<Project> {
     }
 
     @Override
+    protected void setupDefaultUI() {
+
+    }
+
+    @Override
     protected void saveAndExit() {
         if (data == null) {
             data = new Project();

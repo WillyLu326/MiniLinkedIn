@@ -36,6 +36,11 @@ public class ExperienceEditActivity extends BasicEditActivity<Experience>{
     }
 
     @Override
+    protected void setupDefaultUI() {
+
+    }
+
+    @Override
     protected void saveAndExit() {
         if (data == null) {
             data = new Experience();

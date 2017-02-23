@@ -2,6 +2,7 @@ package willy.individual.com.minilinkedinapp;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.view.View;
 import android.widget.EditText;
 
 import willy.individual.com.minilinkedinapp.models.Education;
@@ -15,6 +16,7 @@ import willy.individual.com.minilinkedinapp.utils.ToolUtils;
 public class EducationEditActivity extends BasicEditActivity<Education> {
 
     public static final String KEY_EDUCATION = "education";
+    public static final String KEY_EDUCATION_DELETE = "education_delete";
 
     @Override
     protected int getLayoutId() {
@@ -33,6 +35,22 @@ public class EducationEditActivity extends BasicEditActivity<Education> {
         ((EditText)findViewById(R.id.education_edit_start_date)).setText(DateUtils.dateToString(data.startDate));
         ((EditText)findViewById(R.id.education_edit_end_date)).setText(DateUtils.dateToString(data.endDate));
         ((EditText)findViewById(R.id.education_edit_courses)).setText(ToolUtils.convertListToString(data.courses));
+
+        findViewById(R.id.education_edit_delete_btn).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent resultIntent = new Intent();
+                resultIntent.putExtra(KEY_EDUCATION_DELETE, data.id);
+                setResult(Activity.RESULT_OK, resultIntent);
+
+                finish();
+            }
+        });
+    }
+
+    @Override
+    protected void setupDefaultUI() {
+        findViewById(R.id.education_edit_delete_btn).setVisibility(View.INVISIBLE);
     }
 
     protected void saveAndExit() {
@@ -53,4 +71,5 @@ public class EducationEditActivity extends BasicEditActivity<Education> {
 
         finish();
     }
+
 }

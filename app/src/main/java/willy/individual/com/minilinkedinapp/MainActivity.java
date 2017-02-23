@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -58,8 +59,13 @@ public class MainActivity extends AppCompatActivity {
         }
 
         if (requestCode == REQ_CODE_EDUCATION && resultCode == Activity.RESULT_OK) {
-            Education education = data.getParcelableExtra(EducationEditActivity.KEY_EDUCATION);
-            updateEducations(education);
+            String id = data.getStringExtra(EducationEditActivity.KEY_EDUCATION_DELETE);
+            if (id != null) {
+                deleteAndUpdateEducations(id);
+            } else {
+                Education education = data.getParcelableExtra(EducationEditActivity.KEY_EDUCATION);
+                updateEducations(education);
+            }
         }
 
         if (requestCode == REQ_CODE_EXPERIENCE && resultCode == Activity.RESULT_OK) {
@@ -91,6 +97,19 @@ public class MainActivity extends AppCompatActivity {
 
         if (!found) {
             educations.add(newEducation);
+        }
+
+        ModelUtils.saveModel(this, SP_KEY_EDUCATION, educations);
+
+        setupEducations();
+    }
+
+    private void deleteAndUpdateEducations(String id) {
+        for (int i = 0; i < educations.size(); ++i) {
+            if (TextUtils.equals(educations.get(i).id, id)) {
+                educations.remove(i);
+                break;
+            }
         }
 
         ModelUtils.saveModel(this, SP_KEY_EDUCATION, educations);

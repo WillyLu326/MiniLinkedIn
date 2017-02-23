@@ -4,8 +4,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.widget.EditText;
 
-import willy.individual.com.minilinkedinapp.BasicEditActivity;
-import willy.individual.com.minilinkedinapp.R;
 import willy.individual.com.minilinkedinapp.models.BasicInfo;
 
 /**
@@ -30,6 +28,11 @@ public class BasicInfoActivity extends BasicEditActivity<BasicInfo>{
     protected void setupEditUI() {
         ((EditText) findViewById(R.id.basicinfo_edit_name)).setText(data.userName);
         ((EditText) findViewById(R.id.basicinfo_edit_email)).setText(data.email);
+    }
+
+    @Override
+    protected void setupDefaultUI() {
+
     }
 
     @Override

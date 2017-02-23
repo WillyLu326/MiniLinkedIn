@@ -25,6 +25,8 @@ public abstract class BasicEditActivity<T> extends AppCompatActivity {
 
         if (data != null) {
             setupEditUI();
+        } else {
+            setupDefaultUI();
         }
     }
 
@@ -53,6 +55,8 @@ public abstract class BasicEditActivity<T> extends AppCompatActivity {
     protected abstract T getIntentData();
 
     protected abstract void setupEditUI();
+
+    protected abstract void setupDefaultUI();
 
     protected abstract void saveAndExit();
 }
