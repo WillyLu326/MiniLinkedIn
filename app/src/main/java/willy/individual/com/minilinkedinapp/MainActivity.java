@@ -30,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
     private static final String SP_KEY_EDUCATION = "sp_education";
     private static final String SP_KEY_EXPERIENCE = "sp_experience";
     private static final String SP_KEY_PROJECT = "sp_project";
+    private static final String SP_KEY_BASICINFO = "sp_basicinfo";
 
     private BasicInfo basicInfo;
     private List<Education> educations;
@@ -127,6 +128,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setupBasicInfo() {
+        findViewById(R.id.profile_edit_btn).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent();
+            }
+        });
+
         ((TextView) findViewById(R.id.profile_name)).setText(basicInfo.userName);
         ((TextView) findViewById(R.id.profile_email)).setText(basicInfo.email);
     }
@@ -243,9 +251,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void loadData() {
-        basicInfo = new BasicInfo();
-        basicInfo.userName = "Willy Lu";
-        basicInfo.email = "willylu@email.com";
+
+        BasicInfo savedBasicInfo = ModelUtils.readModel(this, SP_KEY_BASICINFO, new TypeToken<BasicInfo>(){});
+        basicInfo = savedBasicInfo == null ? new BasicInfo() : savedBasicInfo;
 
         List<Education> savedEducations = ModelUtils.readModel(this, SP_KEY_EDUCATION, new TypeToken<List<Education>>(){});
         educations = savedEducations == null ? new ArrayList<Education>() : savedEducations;

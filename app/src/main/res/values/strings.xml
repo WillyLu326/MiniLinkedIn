@@ -27,4 +27,6 @@
     <string name="project_edit_end_start">End Date</string>
     <string name="project_edit_project_summary">Project Summary</string>
     <string name="project_edit_end_date">End Date</string>
+    <string name="basicinfo_edit_name">Your Name</string>
+    <string name="basicinfo_edit_email">Email</string>
 </resources>

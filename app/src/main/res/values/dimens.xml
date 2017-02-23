@@ -3,6 +3,8 @@
     <dimen name="activity_margin">16dp</dimen>
     <dimen name="activity_sub_margin">8dp</dimen>
 
+    <dimen name="basicinfo_edit_profile_height">220dp</dimen>
+
     <dimen name="profile_image_size">60dp</dimen>
     <dimen name="action_button_size">18dp</dimen>
 
