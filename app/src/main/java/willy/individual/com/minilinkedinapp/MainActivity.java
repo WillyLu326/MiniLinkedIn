@@ -69,8 +69,13 @@ public class MainActivity extends AppCompatActivity {
         }
 
         if (requestCode == REQ_CODE_EXPERIENCE && resultCode == Activity.RESULT_OK) {
-            Experience experience = data.getParcelableExtra(ExperienceEditActivity.KEY_EXPERIENCE);
-            updateExperiences(experience);
+            String id = data.getStringExtra(ExperienceEditActivity.KEY_EXPERIENCE_DELETE);
+            if (id != null) {
+                deleteAndUpdateExperience(id);
+            } else {
+                Experience experience = data.getParcelableExtra(ExperienceEditActivity.KEY_EXPERIENCE);
+                updateExperiences(experience);
+            }
         }
 
         if (requestCode == REQ_CODE_PROJECT && resultCode == Activity.RESULT_OK) {
@@ -117,6 +122,7 @@ public class MainActivity extends AppCompatActivity {
         setupEducations();
     }
 
+
     private void updateExperiences(Experience newExperience) {
         boolean found = false;
         for (int i = 0; i < experiences.size(); ++i) {
@@ -135,6 +141,20 @@ public class MainActivity extends AppCompatActivity {
 
         setupExperiences();
     }
+
+    private void deleteAndUpdateExperience(String id) {
+        for (int i = 0; i < experiences.size(); ++i) {
+            if (TextUtils.equals(experiences.get(i).id, id)) {
+                experiences.remove(i);
+                break;
+            }
+        }
+
+        ModelUtils.saveModel(this, SP_KEY_EXPERIENCE, experiences);
+
+        setupExperiences();
+    }
+
 
     private void updateProjects(Project newProject) {
         boolean found = false;

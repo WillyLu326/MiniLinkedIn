@@ -2,6 +2,7 @@ package willy.individual.com.minilinkedinapp;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.view.View;
 import android.widget.EditText;
 
 import willy.individual.com.minilinkedinapp.models.Experience;
@@ -15,6 +16,7 @@ import willy.individual.com.minilinkedinapp.utils.ToolUtils;
 public class ExperienceEditActivity extends BasicEditActivity<Experience>{
 
     public static final String KEY_EXPERIENCE = "experience";
+    public static final String KEY_EXPERIENCE_DELETE = "experience_delete";
 
     @Override
     protected int getLayoutId() {
@@ -33,11 +35,22 @@ public class ExperienceEditActivity extends BasicEditActivity<Experience>{
         ((EditText) findViewById(R.id.experience_edit_start_date)).setText(DateUtils.dateToString(data.startDate));
         ((EditText) findViewById(R.id.experience_edit_end_date)).setText(DateUtils.dateToString(data.endDate));
         ((EditText) findViewById(R.id.experience_edit_project_summary)).setText(ToolUtils.convertListToString(data.projects));
+
+        findViewById(R.id.experience_edit_delete_btn).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent resultIntent = new Intent();
+                resultIntent.putExtra(KEY_EXPERIENCE_DELETE, data.id);
+                setResult(Activity.RESULT_OK, resultIntent);
+
+                finish();
+            }
+        });
     }
 
     @Override
     protected void setupDefaultUI() {
-
+        findViewById(R.id.experience_edit_delete_btn).setVisibility(View.INVISIBLE);
     }
 
     @Override
