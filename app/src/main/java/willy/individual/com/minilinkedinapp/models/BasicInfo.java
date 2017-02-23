@@ -1,5 +1,6 @@
 package willy.individual.com.minilinkedinapp.models;
 
+import android.net.Uri;
 import android.os.Parcel;
 import android.os.Parcelable;
 
@@ -17,7 +18,7 @@ public class BasicInfo implements Parcelable{
 
     public String email;
 
-    // TODO Image
+    public Uri imageUri;
 
     public BasicInfo() {
         id = UUID.randomUUID().toString();
@@ -27,6 +28,7 @@ public class BasicInfo implements Parcelable{
         id = in.readString();
         userName = in.readString();
         email = in.readString();
+        imageUri = in.readParcelable(Uri.class.getClassLoader());
     }
 
     @Override
@@ -34,6 +36,7 @@ public class BasicInfo implements Parcelable{
         parcel.writeString(id);
         parcel.writeString(userName);
         parcel.writeString(email);
+        parcel.writeParcelable(imageUri, i);
     }
 
     public static final Creator<BasicInfo> CREATOR = new Creator<BasicInfo>() {
