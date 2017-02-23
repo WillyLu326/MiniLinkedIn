@@ -94,6 +94,7 @@ public class MainActivity extends AppCompatActivity {
         setupBasicInfo();
     }
 
+
     private void updateEducations(Education newEducation) {
         boolean found = false;
         for (int i = 0; i < educations.size(); ++i) {
@@ -336,6 +337,7 @@ public class MainActivity extends AppCompatActivity {
 
         List<Project> savedProjects = ModelUtils.readModel(this, SP_KEY_PROJECT, new TypeToken<List<Project>>(){});
         projects = savedProjects == null ? new ArrayList<Project>() : savedProjects;
+
     }
 
     /**

@@ -2,6 +2,7 @@ package willy.individual.com.minilinkedinapp;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.view.View;
 import android.widget.EditText;
 
 import willy.individual.com.minilinkedinapp.models.BasicInfo;
@@ -28,6 +29,14 @@ public class BasicInfoActivity extends BasicEditActivity<BasicInfo>{
     protected void setupEditUI() {
         ((EditText) findViewById(R.id.basicinfo_edit_name)).setText(data.userName);
         ((EditText) findViewById(R.id.basicinfo_edit_email)).setText(data.email);
+
+        // TODO Image Uploading
+        findViewById(R.id.basicinfo_edit_profile).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
     }
 
     @Override
